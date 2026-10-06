@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COVAC / SEMERJ — Acompanhamento Legislativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0b1730;
+    --navy-800:#101f3f;
+    --navy-700:#16294f;
+    --navy-line:rgba(255,255,255,.08);
+    --green:#3c6a56;
+    --green-dark:#2d5142;
+    --bg-section:#eef0f5;
+    --card:#ffffff;
+    --ink:#16213b;
+    --ink-soft:#5c6479;
+    --border:#e2e4ee;
+    --blue-bg:#dfe9fb; --blue-tx:#2f5ea3;
+    --purple-bg:#e7defc; --purple-tx:#6a44c2;
+    --amber-bg:#fbedc9; --amber-tx:#946716;
+    --green-bg:#d7f2e3; --green-tx:#1f7a4d;
+    --red-bg:#f6dcdc; --red-tx:#a3403f;
+    --gray-bg:#e7e8ee; --gray-tx:#565c72;
+    --radius:14px;
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:var(--sans); color:var(--ink); background:var(--bg-section);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  button{font-family:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- HEADER ---------- */
+  header.site{
+    background:var(--navy-900); position:sticky; top:0; z-index:50;
+    border-bottom:1px solid var(--navy-line);
+  }
+  .site-nav{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:9px; background:linear-gradient(145deg,#25406e,#132347);
+    display:flex; align-items:center; justify-content:center; color:#cfe0d3; flex-shrink:0;
+    border:1px solid rgba(255,255,255,.12);
+  }
+  .brand-mark svg{width:19px;height:19px;}
+  .brand-text{line-height:1.15;}
+  .brand-text .t1{font-weight:700; color:#f3f5fa; font-size:15px; letter-spacing:.2px;}
+  .brand-text .t2{font-size:10.5px; color:#8f9ab8; letter-spacing:1.2px; text-transform:uppercase; margin-top:2px;}
+  .site-links{display:flex; align-items:center; gap:28px;}
+  .site-links a, .site-links button.nav-link{color:#c7cee3; text-decoration:none; font-size:14.5px; font-weight:500; background:none; border:none; cursor:pointer; font-family:inherit; padding:0;}
+  .site-links button.nav-link:hover{color:#fff;}
+  .site-links a:hover{color:#fff;}
+  .btn-admin{
+    background:transparent; border:1px solid rgba(255,255,255,.28); color:#eef1f9;
+    padding:9px 18px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer;
+    transition:.15s;
+  }
+  .btn-admin:hover{background:rgba(255,255,255,.08);}
+  .btn-admin.on{background:#c7d3c9; color:#183024; border-color:transparent;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 500px at 78% -10%, rgba(255,255,255,.05), transparent 60%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 44px),
+      linear-gradient(180deg, var(--navy-800), var(--navy-900) 75%);
+    position:relative;
+    padding:76px 0 64px;
+  }
+  .eyebrow{
+    display:flex; align-items:center; gap:10px; color:#8fd4a8; font-size:12.5px;
+    font-weight:600; letter-spacing:1.6px; text-transform:uppercase; margin-bottom:22px;
+  }
+  .eyebrow::before{content:""; width:26px; height:1px; background:#8fd4a8;}
+  .hero h1{
+    font-family:var(--serif); color:#fbfbfa; font-weight:600; font-size:clamp(34px,5vw,54px);
+    line-height:1.08; margin:0 0 6px; max-width:640px;
+  }
+  .hero h1 em{font-style:italic; font-weight:500; color:#e4e7ef;}
+  .hero p.lede{
+    color:#aeb7d1; font-size:16.5px; line-height:1.6; max-width:490px; margin:22px 0 30px;
+  }
+  .btn-primary{
+    background:var(--green); color:#f2f6f3; border:none; padding:13px 24px; border-radius:9px;
+    font-size:14.5px; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:9px;
+    transition:.15s;
+  }
+  .btn-primary:hover{background:var(--green-dark);}
+
+  /* ---------- HIGHLIGHTS ---------- */
+  section.highlights{padding:64px 0 56px;}
+  .sec-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:26px; flex-wrap:wrap;}
+  .sec-eyebrow{font-size:11.5px; font-weight:700; letter-spacing:1.4px; color:var(--green-dark); text-transform:uppercase; margin-bottom:8px;}
+  .sec-head h2{font-family:var(--serif); font-size:28px; font-weight:600; margin:0; color:var(--ink);}
+  .sec-head .desc{font-size:14px; color:var(--ink-soft); max-width:320px; line-height:1.5;}
+  .hl-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .hl-card{
+    background:var(--card); border-radius:var(--radius); padding:22px 22px 24px; border-left:3px solid var(--green);
+    box-shadow:0 1px 2px rgba(20,30,60,.04); display:flex; flex-direction:column;
+  }
+  .hl-card:nth-child(2){border-left-color:#5b7ea8;}
+  .hl-card:nth-child(3){border-left-color:#c99a3c;}
+  .hl-date{font-size:11.5px; font-weight:700; color:var(--ink-soft); letter-spacing:.5px; margin-bottom:10px;}
+  .hl-title{font-family:var(--serif); font-size:19px; font-weight:600; margin:0 0 10px; color:var(--ink);}
+  .hl-body{font-size:13.5px; color:var(--ink-soft); line-height:1.55; flex:1;}
+  .hl-link{margin-top:14px; font-size:13.5px; font-weight:600; color:var(--green-dark); text-decoration:none; display:inline-flex; align-items:center; gap:5px; cursor:pointer; background:none; border:none; padding:0; font-family:inherit;}
+  .hl-empty{grid-column:1/-1; text-align:center; padding:30px; color:var(--ink-soft); font-size:14px; border:1px dashed var(--border); border-radius:var(--radius);}
+
+  /* ---------- PROJECTS ---------- */
+  section.projects{padding:16px 0 90px;}
+  .toolbar{
+    background:var(--card); border-radius:var(--radius); padding:16px; display:grid;
+    grid-template-columns:1.6fr 1fr 1fr 1fr 1fr; gap:12px; margin-bottom:22px;
+    box-shadow:0 1px 2px rgba(20,30,60,.04); border:1px solid var(--border);
+  }
+  .field{position:relative;}
+  .field input, .field select{
+    width:100%; padding:10px 12px 10px 38px; border-radius:9px; border:1px solid var(--border);
+    background:#fbfbfd; font-size:13.5px; color:var(--ink); appearance:none; font-family:inherit;
+  }
+  .field input:focus, .field select:focus{outline:2px solid #b7cdc0; border-color:transparent;}
+  .field svg{position:absolute; left:12px; top:50%; transform:translateY(-50%); width:15px; height:15px; color:var(--ink-soft); pointer-events:none;}
+  .field select{padding-left:14px;}
+
+  table.plist{width:100%; border-collapse:collapse; background:var(--card); border-radius:var(--radius); overflow:hidden; box-shadow:0 1px 2px rgba(20,30,60,.04);}
+  table.plist thead th{
+    background:var(--navy-900); color:#c9d0e4; text-align:left; font-size:11px; font-weight:700;
+    letter-spacing:.6px; text-transform:uppercase; padding:15px 18px;
+  }
+  table.plist thead th.right{text-align:right;}
+  table.plist tbody tr.row{border-top:1px solid var(--border); cursor:pointer; transition:background .1s;}
+  table.plist tbody tr.row:hover{background:#f7f8fb;}
+  table.plist td{padding:15px 18px; vertical-align:top; font-size:13.5px;}
+  td.col-proj .num{font-weight:700; color:var(--ink); font-size:14px;}
+  td.col-proj .desc{color:var(--ink-soft); font-size:12.5px; margin-top:3px; max-width:280px; line-height:1.4;}
+  td.col-and{color:var(--ink-soft); max-width:360px; line-height:1.5; font-size:13px;}
+  td.col-date{color:var(--ink-soft); font-size:13px; white-space:nowrap;}
+  td.col-caret{text-align:right; color:#b7bccb;}
+  .badge{display:inline-block; padding:5px 12px; border-radius:20px; font-size:11.5px; font-weight:700; white-space:nowrap;}
+  tr.detail-row td{padding:0; border-top:none;}
+  .detail-inner{background:#f7f8fc; padding:22px 26px 26px; border-top:1px solid var(--border); display:grid; grid-template-columns:1fr 1fr; gap:22px 30px;}
+  .detail-inner .dblock h4{margin:0 0 6px; font-size:11px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--green-dark);}
+  .detail-inner .dblock p{margin:0; font-size:13.5px; line-height:1.6; color:var(--ink);}
+  .detail-inner .dblock{grid-column:span 1;}
+  .detail-inner .full{grid-column:1/-1;}
+  .no-results{padding:50px 20px; text-align:center; color:var(--ink-soft); font-size:14px;}
+  .results-count{font-size:13px; color:var(--ink-soft);}
+
+  /* ---------- ADMIN ---------- */
+  .admin-banner{
+    background:#fff7e0; border:1px solid #f0dca0; color:#7a5c12; font-size:13px; padding:12px 18px;
+    border-radius:10px; margin-bottom:20px; display:flex; align-items:center; gap:10px;
+  }
+  .admin-toolbar{display:flex; justify-content:flex-end; margin-bottom:14px;}
+  .btn-add{background:var(--navy-900); color:#fff; border:none; padding:10px 18px; border-radius:8px; font-size:13.5px; font-weight:600; cursor:pointer;}
+  .row-admin-actions{display:flex; gap:8px; justify-content:flex-end; align-items:center;}
+  .icon-btn{border:none; background:#eef0f6; width:28px; height:28px; border-radius:7px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; color:var(--ink-soft);}
+  .icon-btn:hover{background:#e2e5ef; color:var(--ink);}
+  .icon-btn.danger:hover{background:#fbe3e3; color:#a3403f;}
+  .star-flag{color:#c99a3c;}
+
+  /* modal */
+  .modal-bg{position:fixed; inset:0; background:rgba(12,18,36,.55); display:none; align-items:flex-start; justify-content:center; padding:40px 20px; z-index:100; overflow:auto;}
+  .modal-bg.open{display:flex;}
+  .modal{background:#fff; width:100%; max-width:680px; border-radius:16px; padding:28px 28px 24px; margin-top:10px;}
+  .modal h3{font-family:var(--serif); font-size:22px; margin:0 0 18px;}
+  .modal .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .modal label{display:block; font-size:12px; font-weight:700; color:var(--ink-soft); margin-bottom:5px; text-transform:uppercase; letter-spacing:.4px;}
+  .modal .f{margin-bottom:14px;}
+  .modal input, .modal select, .modal textarea{
+    width:100%; border:1px solid var(--border); border-radius:8px; padding:9px 11px; font-size:13.5px; font-family:inherit; color:var(--ink);
+  }
+  .modal textarea{resize:vertical; min-height:64px;}
+  .modal .check{display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:500; color:var(--ink); text-transform:none;}
+  .modal .check input{width:auto;}
+  .modal-actions{display:flex; justify-content:space-between; align-items:center; margin-top:22px; gap:10px;}
+  .btn-cancel{background:none; border:1px solid var(--border); padding:10px 18px; border-radius:8px; cursor:pointer; font-size:13.5px; font-weight:600; color:var(--ink-soft);}
+  .btn-save{background:var(--green); border:none; color:#fff; padding:10px 22px; border-radius:8px; cursor:pointer; font-size:13.5px; font-weight:700;}
+
+  footer.site{background:var(--navy-900); color:#8f9ab8; padding:26px 0; font-size:13px;}
+  footer.site .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+
+  @media (max-width:900px){
+    .hl-grid{grid-template-columns:1fr;}
+    .toolbar{grid-template-columns:1fr 1fr;}
+    table.plist thead{display:none;}
+    table.plist, table.plist tbody, table.plist tr, table.plist td{display:block; width:100%;}
+    td.col-and, td.col-date{max-width:none;}
+    .detail-inner{grid-template-columns:1fr;}
+    .modal .grid2{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap site-nav">
+    <a href="../" class="brand" style="text-decoration:none;">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="t1">COVAC / SEMERJ</div>
+        <div class="t2">Acompanhamento legislativo</div>
+      </div>
+    </a>
+    <nav class="site-links">
+      <button type="button" class="nav-link" onclick="document.getElementById('destaques').scrollIntoView({behavior:'smooth'});">Destaques</button>
+      <button type="button" class="nav-link" onclick="document.getElementById('projetos').scrollIntoView({behavior:'smooth'});">Projetos de lei</button>
+      <a href="../semesp/" class="nav-link" style="text-decoration:none; display:inline-block;">COVAC / SEMESP ↗</a>
+      <button class="btn-admin" id="adminToggle">Área administrativa</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Congresso Nacional</div>
+    <h1>Acompanhamento de<br><em>Projetos de Lei</em></h1>
+    <p class="lede">Uma visão organizada das proposições estratégicas para a parceria COVAC–SEMERJ, com curadoria de andamento e atualização semanal.</p>
+    <button class="btn-primary" onclick="document.getElementById('projetos').scrollIntoView({behavior:'smooth'})">
+      Explorar projetos
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </button>
+  </div>
+</section>
+
+<section class="highlights" id="destaques">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Curadoria</div>
+        <h2>Destaques da semana</h2>
+      </div>
+    </div>
+    <div class="hl-grid" id="highlightsGrid"></div>
+  </div>
+</section>
+
+<section class="projects" id="projetos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Base pública</div>
+        <h2>Projetos de lei</h2>
+      </div>
+      <div class="results-count" id="resultsCount"></div>
+    </div>
+
+    <div id="adminBannerHolder"></div>
+    <div class="admin-toolbar" id="adminToolbar" style="display:none;">
+      <button class="btn-add" id="btnAddProject">+ Adicionar projeto</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Buscar por número ou assunto">
+      </div>
+      <div class="field"><select id="filterCasa"><option value="">Casa — Todos</option></select></div>
+      <div class="field"><select id="filterStatus"><option value="">Status — Todos</option></select></div>
+      <div class="field"><select id="filterTema"><option value="">Tema — Todos</option></select></div>
+      <div class="field"><select id="filterTipo"><option value="">Tipo — Todos</option></select></div>
+    </div>
+
+    <table class="plist">
+      <thead>
+        <tr>
+          <th style="width:24%;">Projeto</th>
+          <th style="width:34%;">Andamento</th>
+          <th style="width:15%;">Status</th>
+          <th style="width:12%;">Última atualização</th>
+          <th class="right" style="width:15%;">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="no-results" id="noResults" style="display:none;">Nenhum projeto encontrado com esses filtros.</div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div>COVAC | SEMESP — Acompanhamento legislativo estratégico</div>
+    <div>Base atualizada mediante validação e publicação administrativa.</div>
+  </div>
+</footer>
+
+<!-- MODAL: add / edit project -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <h3 id="modalTitle">Adicionar projeto</h3>
+    <input type="hidden" id="f_id">
+    <div class="grid2">
+      <div class="f"><label>Número / tipo de norma</label><input id="f_numero" placeholder="Ex: PL 1234/2026"></div>
+      <div class="f"><label>Casa legislativa</label>
+        <select id="f_casa">
+          <option>Câmara</option><option>Senado</option><option>Congresso Nacional</option><option>Câmara e Senado</option>
+        </select>
+      </div>
+    </div>
+    <div class="f"><label>Projetos apensados (opcional)</label><input id="f_apensados" placeholder="Ex: PL 5874/2025"></div>
+    <div class="f"><label>Conteúdo / ementa</label><textarea id="f_conteudo" placeholder="Do que trata o projeto"></textarea></div>
+    <div class="f"><label>Andamento</label><textarea id="f_andamento" placeholder="Situação atual do trâmite"></textarea></div>
+    <div class="f"><label>Providências</label><textarea id="f_providencias" placeholder="Ex: Acompanhar"></textarea></div>
+    <div class="grid2">
+      <div class="f"><label>Parlamentar / autoria</label><input id="f_parlamentar"></div>
+      <div class="f"><label>Última atualização</label><input id="f_data" placeholder="dd/mm/aa ou Não informado"></div>
+    </div>
+    <div class="grid2">
+      <div class="f"><label>Status</label>
+        <select id="f_status">
+          <option>Aguardando</option><option>Sancionado</option>
+        </select>
+      </div>
+      <div class="f"><label>Tema</label>
+        <select id="f_tema">
+          <option>Educação</option><option>Trabalhista</option><option>Tributário</option><option>Saúde</option><option>Tecnologia</option><option>Econômico</option>
+        </select>
+      </div>
+    </div>
+    <div class="f">
+      <label class="check"><input type="checkbox" id="f_destaque"> Marcar como destaque da semana</label>
+    </div>
+    <div class="f" id="destaqueDateWrap" style="display:none;">
+      <label>Data do destaque (ex: 25/08)</label><input id="f_destaqueData" placeholder="25/08">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="btnDelete" style="border-color:#f0c7c7; color:#a3403f; display:none;">Excluir projeto</button>
+      <div style="flex:1"></div>
+      <button class="btn-cancel" id="btnCancel">Cancelar</button>
+      <button class="btn-save" id="btnSave">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ====================== DADOS BASE ====================== */
+const DEFAULT_PROJECTS = [
+  // Nenhum projeto cadastrado ainda. Assim que os dados do SEMERJ forem enviados, eles entram aqui.
+];
+
+/* ====================== ESTADO ====================== */
+let projects = [];
+let adminMode = false;
+let editingId = null;
+const STORAGE_KEY = "covac_semerj_projects_v1";
+
+const STATUS_STYLE = {
+  "Aguardando":{bg:"var(--blue-bg)",tx:"var(--blue-tx)"},
+  "Sancionado":{bg:"var(--green-bg)",tx:"var(--green-tx)"}
+};
+
+function uid(){ return 'p_' + Math.random().toString(36).slice(2,10); }
+
+/* ====================== PERSISTÊNCIA ======================
+   Quando rodando dentro do Claude, usa window.storage (compartilhado
+   entre todos os visitantes do link). Fora do Claude (GitHub Pages,
+   domínio próprio, etc.), essa API não existe — nesse caso o site usa
+   localStorage como alternativa, que salva apenas no navegador de
+   quem está editando. isLiveStorage indica qual modo está ativo, para
+   avisar o administrador. */
+const hasLiveStorage = (typeof window !== "undefined" && !!window.storage && typeof window.storage.get === "function");
+
+async function loadProjects(){
+  try{
+    if(hasLiveStorage){
+      const res = await window.storage.get(STORAGE_KEY, true);
+      if(res && res.value){ projects = JSON.parse(res.value); return; }
+    } else {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){ projects = JSON.parse(raw); return; }
+    }
+  }catch(e){ /* chave ainda não existe */ }
+  projects = DEFAULT_PROJECTS.map(p => ({...p, id: uid()}));
+  await saveProjects();
+}
+
+async function saveProjects(){
+  try{
+    if(hasLiveStorage){
+      await window.storage.set(STORAGE_KEY, JSON.stringify(projects), true);
+    } else {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+    }
+  }catch(e){ console.error("Falha ao salvar", e); }
+}
+
+/* ====================== RENDER ====================== */
+function escapeHtml(s){
+  if(s===undefined || s===null) return "";
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function parseDatePt(str){
+  if(!str || /não informado/i.test(str)) return null;
+  const m = str.trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if(!m) return null;
+  let [_, d, mo, y] = m;
+  if(y.length === 2) y = "20" + y;
+  return new Date(+y, +mo - 1, +d);
+}
+
+function populateFilters(){
+  const casas = [...new Set(projects.map(p=>p.casa))].sort();
+  const statuses = [...new Set(projects.map(p=>p.status))];
+  const temas = [...new Set(projects.map(p=>p.tema))].sort();
+  const tipos = [...new Set(projects.map(p => (p.numero.match(/^[A-Z]+/)||[""])[0]))].filter(Boolean).sort();
+
+  const fill = (sel, arr, placeholder) => {
+    const cur = sel.value;
+    sel.innerHTML = `<option value="">${placeholder}</option>` + arr.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("");
+    if(arr.includes(cur)) sel.value = cur;
+  };
+  fill(document.getElementById('filterCasa'), casas, "Casa — Todos");
+  fill(document.getElementById('filterStatus'), statuses, "Status — Todos");
+  fill(document.getElementById('filterTema'), temas, "Tema — Todos");
+  fill(document.getElementById('filterTipo'), tipos, "Tipo — Todos");
+}
+
+function updateStats(){
+  // área de estatísticas removida da interface — função mantida vazia
+  // para não quebrar as chamadas existentes.
+}
+
+function renderHighlights(){
+  const grid = document.getElementById('highlightsGrid');
+  let hl = projects.filter(p=>p.destaque);
+  hl.sort((a,b)=>{
+    const da = parseDatePt(a.destaqueData) || parseDatePt(a.data) || new Date(0);
+    const db = parseDatePt(b.destaqueData) || parseDatePt(b.data) || new Date(0);
+    return db - da;
+  });
+  hl = hl.slice(0,3);
+
+  if(hl.length===0){
+    grid.innerHTML = `<div class="hl-empty">Nenhum destaque marcado esta semana. Use a área administrativa para marcar projetos como destaque.</div>`;
+    return;
+  }
+  grid.innerHTML = hl.map(p=>`
+    <div class="hl-card">
+      <div class="hl-date">${escapeHtml(p.destaqueData || p.data || "")}</div>
+      <h3 class="hl-title">${escapeHtml(shortNumero(p.numero))}</h3>
+      <div class="hl-body">${escapeHtml(truncate(p.andamento, 150))}</div>
+      <button class="hl-link" onclick="focusProject('${p.id}')">${escapeHtml(p.numero)} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  `).join("");
+}
+
+function shortNumero(n){
+  return n.split("(")[0].split(",")[0].trim();
+}
+function truncate(s, n){
+  if(!s) return "";
+  return s.length > n ? s.slice(0,n).trim() + "…" : s;
+}
+
+let expandedId = null;
+
+function getFiltered(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const casa = document.getElementById('filterCasa').value;
+  const status = document.getElementById('filterStatus').value;
+  const tema = document.getElementById('filterTema').value;
+  const tipo = document.getElementById('filterTipo').value;
+
+  return projects.filter(p=>{
+    if(q && !(p.numero.toLowerCase().includes(q) || p.conteudo.toLowerCase().includes(q))) return false;
+    if(casa && p.casa !== casa) return false;
+    if(status && p.status !== status) return false;
+    if(tema && p.tema !== tema) return false;
+    if(tipo && !p.numero.startsWith(tipo)) return false;
+    return true;
+  });
+}
+
+function renderTable(){
+  const list = getFiltered();
+  document.getElementById('resultsCount').textContent = `${list.length} de ${projects.length} registros encontrados`;
+  const body = document.getElementById('tableBody');
+  const noRes = document.getElementById('noResults');
+
+  if(list.length === 0){
+    body.innerHTML = "";
+    noRes.style.display = "block";
+    return;
+  }
+  noRes.style.display = "none";
+
+  body.innerHTML = list.map(p=>{
+    const st = STATUS_STYLE[p.status] || STATUS_STYLE["Em acompanhamento"];
+    const isOpen = expandedId === p.id;
+    let adminCell = "";
+    if(adminMode){
+      adminCell = `
+        <div class="row-admin-actions">
+          ${p.destaque ? '<span class="star-flag" title="Destaque">★</span>' : ''}
+          <button class="icon-btn" title="Editar" onclick="event.stopPropagation(); openModal('${p.id}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </button>
+          <button class="icon-btn danger" title="Excluir" onclick="event.stopPropagation(); deleteProject('${p.id}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0l-1 14a2 2 0 01-2 2H7a2 2 0 01-2-2L4 6"/></svg>
+          </button>
+        </div>`;
+    } else {
+      adminCell = `<span class="col-caret">${isOpen ? "&#9660;" : "&#8250;"}</span>`;
+    }
+
+    let rows = `
+      <tr class="row" onclick="${adminMode ? '' : `toggleRow('${p.id}')`}">
+        <td class="col-proj">
+          <div class="num">${escapeHtml(shortNumero(p.numero))}</div>
+          <div class="desc">${escapeHtml(truncate(p.conteudo, 70))}</div>
+        </td>
+        <td class="col-and">${escapeHtml(truncate(p.andamento, 130))}</td>
+        <td><span class="badge" style="background:${st.bg};color:${st.tx};">${escapeHtml(p.status)}</span></td>
+        <td class="col-date">${escapeHtml(p.data)}</td>
+        <td class="col-caret">${adminCell}</td>
+      </tr>`;
+
+    if(isOpen){
+      rows += `
+      <tr class="detail-row">
+        <td colspan="5">
+          <div class="detail-inner">
+            <div class="dblock full"><h4>Conteúdo</h4><p>${escapeHtml(p.conteudo)}</p></div>
+            <div class="dblock full"><h4>Andamento completo</h4><p>${escapeHtml(p.andamento)}</p></div>
+            <div class="dblock"><h4>Providências</h4><p>${escapeHtml(p.providencias || "—")}</p></div>
+            <div class="dblock"><h4>Parlamentar / autoria</h4><p>${escapeHtml(p.parlamentar || "—")}</p></div>
+            ${p.apensados ? `<div class="dblock full"><h4>Projetos apensados</h4><p>${escapeHtml(p.apensados)}</p></div>` : ""}
+            <div class="dblock"><h4>Casa legislativa</h4><p>${escapeHtml(p.casa)}</p></div>
+            <div class="dblock"><h4>Tema</h4><p>${escapeHtml(p.tema)}</p></div>
+          </div>
+        </td>
+      </tr>`;
+    }
+    return rows;
+  }).join("");
+}
+
+function toggleRow(id){
+  expandedId = expandedId === id ? null : id;
+  renderTable();
+}
+
+function focusProject(id){
+  document.getElementById('projetos').scrollIntoView({behavior:'smooth'});
+  document.getElementById('searchInput').value = "";
+  ['filterCasa','filterStatus','filterTema','filterTipo'].forEach(f=>document.getElementById(f).value="");
+  expandedId = id;
+  renderTable();
+  setTimeout(()=>{
+    const el = document.querySelector('.detail-row');
+  }, 200);
+}
+
+/* ====================== ADMIN ====================== */
+function renderAdminUI(){
+  document.getElementById('adminToolbar').style.display = adminMode ? "flex" : "none";
+  const holder = document.getElementById('adminBannerHolder');
+  const bannerMsg = hasLiveStorage
+    ? "📋 Área administrativa ativa — as alterações são salvas automaticamente e ficam visíveis para todos que acessam este site."
+    : "📋 Área administrativa ativa — este site está rodando fora do Claude, então as alterações são salvas apenas neste navegador (não ficam visíveis para outros visitantes). Para publicar uma atualização real para todos, peça o arquivo atualizado e substitua-o no servidor.";
+  holder.innerHTML = adminMode ? `<div class="admin-banner">${bannerMsg}</div>` : "";
+  document.getElementById('adminToggle').classList.toggle('on', adminMode);
+  document.getElementById('adminToggle').textContent = adminMode ? "Sair da área administrativa" : "Área administrativa";
+  renderTable();
+}
+
+const ADMIN_PASSWORD = "Cov@c123$";
+let adminAuthed = false;
+
+document.getElementById('adminToggle').addEventListener('click', ()=>{
+  if(!adminMode){
+    if(!adminAuthed){
+      const pass = prompt("Digite a senha da área administrativa:");
+      if(pass === null) return;
+      if(pass !== ADMIN_PASSWORD){
+        alert("Senha incorreta.");
+        return;
+      }
+      adminAuthed = true;
+    }
+    adminMode = true;
+  } else {
+    adminMode = false;
+  }
+  expandedId = null;
+  renderAdminUI();
+});
+
+document.getElementById('btnAddProject').addEventListener('click', ()=> openModal(null));
+
+function openModal(id){
+  editingId = id;
+  const modal = document.getElementById('modalBg');
+  const isEdit = !!id;
+  document.getElementById('modalTitle').textContent = isEdit ? "Editar projeto" : "Adicionar projeto";
+  document.getElementById('btnDelete').style.display = isEdit ? "inline-block" : "none";
+
+  const p = isEdit ? projects.find(x=>x.id===id) : {
+    numero:"",casa:"Câmara",apensados:"",conteudo:"",andamento:"",providencias:"Acompanhar",
+    parlamentar:"",status:"Aguardando",data:"",tema:"Educação",destaque:false,destaqueData:""
+  };
+
+  document.getElementById('f_id').value = id || "";
+  document.getElementById('f_numero').value = p.numero;
+  document.getElementById('f_casa').value = p.casa;
+  document.getElementById('f_apensados').value = p.apensados || "";
+  document.getElementById('f_conteudo').value = p.conteudo;
+  document.getElementById('f_andamento').value = p.andamento;
+  document.getElementById('f_providencias').value = p.providencias || "";
+  document.getElementById('f_parlamentar').value = p.parlamentar || "";
+  document.getElementById('f_data').value = p.data || "";
+  document.getElementById('f_status').value = p.status;
+  document.getElementById('f_tema').value = p.tema;
+  document.getElementById('f_destaque').checked = !!p.destaque;
+  document.getElementById('f_destaqueData').value = p.destaqueData || "";
+  document.getElementById('destaqueDateWrap').style.display = p.destaque ? "block" : "none";
+
+  modal.classList.add('open');
+}
+
+function closeModal(){
+  document.getElementById('modalBg').classList.remove('open');
+  editingId = null;
+}
+
+document.getElementById('btnCancel').addEventListener('click', closeModal);
+document.getElementById('modalBg').addEventListener('click', (e)=>{ if(e.target.id === 'modalBg') closeModal(); });
+document.getElementById('f_destaque').addEventListener('change', (e)=>{
+  document.getElementById('destaqueDateWrap').style.display = e.target.checked ? "block" : "none";
+});
+
+document.getElementById('btnSave').addEventListener('click', async ()=>{
+  const id = document.getElementById('f_id').value;
+  const numero = document.getElementById('f_numero').value.trim();
+  if(!numero){ alert("Informe o número do projeto."); return; }
+
+  const data = {
+    numero,
+    casa: document.getElementById('f_casa').value,
+    apensados: document.getElementById('f_apensados').value.trim(),
+    conteudo: document.getElementById('f_conteudo').value.trim(),
+    andamento: document.getElementById('f_andamento').value.trim(),
+    providencias: document.getElementById('f_providencias').value.trim(),
+    parlamentar: document.getElementById('f_parlamentar').value.trim(),
+    data: document.getElementById('f_data').value.trim() || "Não informado",
+    status: document.getElementById('f_status').value,
+    tema: document.getElementById('f_tema').value,
+    destaque: document.getElementById('f_destaque').checked,
+    destaqueData: document.getElementById('f_destaqueData').value.trim()
+  };
+
+  if(id){
+    const idx = projects.findIndex(p=>p.id===id);
+    if(idx > -1) projects[idx] = {...projects[idx], ...data};
+  } else {
+    projects.push({id: uid(), ...data});
+  }
+
+  await saveProjects();
+  closeModal();
+  populateFilters();
+  updateStats();
+  renderHighlights();
+  renderTable();
+});
+
+document.getElementById('btnDelete').addEventListener('click', async ()=>{
+  const id = document.getElementById('f_id').value;
+  if(!id) return;
+  if(!confirm("Excluir este projeto da base? Essa ação não pode ser desfeita.")) return;
+  projects = projects.filter(p=>p.id !== id);
+  await saveProjects();
+  closeModal();
+  populateFilters();
+  updateStats();
+  renderHighlights();
+  renderTable();
+});
+
+async function deleteProject(id){
+  if(!confirm("Excluir este projeto da base? Essa ação não pode ser desfeita.")) return;
+  projects = projects.filter(p=>p.id !== id);
+  await saveProjects();
+  populateFilters();
+  updateStats();
+  renderHighlights();
+  renderTable();
+}
+
+/* ====================== EVENTOS DE FILTRO ====================== */
+['searchInput'].forEach(id=>document.getElementById(id).addEventListener('input', renderTable));
+['filterCasa','filterStatus','filterTema','filterTipo'].forEach(id=>document.getElementById(id).addEventListener('change', renderTable));
+
+/* ====================== INIT ====================== */
+(async function init(){
+  await loadProjects();
+  populateFilters();
+  updateStats();
+  renderHighlights();
+  renderTable();
+})();
+</script>
+</body>
+</html>
