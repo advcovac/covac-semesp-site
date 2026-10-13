@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COVAC Advogados — Acompanhamento Legislativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0b1730; --navy-800:#101f3f;
+    --green:#3c6a56; --green-dark:#2d5142;
+    --ink:#16213b; --ink-soft:#5c6479; --border:#e2e4ee;
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:var(--sans); color:var(--ink); background:#eef0f5;
+    min-height:100vh; display:flex; flex-direction:column;
+  }
+  header.hero{
+    background:
+      radial-gradient(1100px 500px at 78% -10%, rgba(255,255,255,.05), transparent 60%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 44px),
+      linear-gradient(180deg, var(--navy-800), var(--navy-900) 75%);
+    padding:60px 24px 90px; text-align:center;
+  }
+  .eyebrow{color:#8fd4a8; font-size:12.5px; font-weight:600; letter-spacing:1.6px; text-transform:uppercase; margin-bottom:18px;}
+  header.hero h1{font-family:var(--serif); color:#fbfbfa; font-weight:600; font-size:clamp(30px,5vw,46px); margin:0 0 14px;}
+  header.hero p{color:#aeb7d1; font-size:16px; max-width:480px; margin:0 auto; line-height:1.6;}
+
+  main{flex:1; max-width:1040px; margin:-56px auto 60px; padding:0 24px; width:100%;}
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .card{
+    background:#fff; border-radius:16px; padding:30px 28px; text-decoration:none; color:var(--ink);
+    box-shadow:0 20px 50px -24px rgba(10,20,45,.3); border:1px solid var(--border);
+    display:flex; flex-direction:column; gap:10px; transition:.15s;
+  }
+  .card:hover{transform:translateY(-3px); box-shadow:0 26px 60px -24px rgba(10,20,45,.4);}
+  .card .tag{font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--green-dark);}
+  .card h2{font-family:var(--serif); font-size:24px; margin:0; font-weight:600;}
+  .card p{font-size:14px; color:var(--ink-soft); line-height:1.55; margin:0;}
+  .card .go{margin-top:8px; font-size:13.5px; font-weight:700; color:var(--green-dark); display:inline-flex; align-items:center; gap:6px;}
+
+  footer{text-align:center; padding:22px; color:var(--ink-soft); font-size:12.5px;}
+
+  @media (max-width:820px){ .cards{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">COVAC Advogados</div>
+  <h1>Acompanhamento Legislativo</h1>
+  <p>Painéis de curadoria das proposições estratégicas acompanhadas pelo escritório, organizados por parceria.</p>
+</header>
+
+<main>
+  <div class="cards">
+    <a class="card" href="./semesp/">
+      <div class="tag">Parceria ativa</div>
+      <h2>COVAC / SEMERJ</h2>
+      <p>Acompanhamento de projetos de lei do Congresso Nacional relacionados à parceria com a SEMESP.</p>
+      <span class="go">Acessar painel →</span>
+    </a>
+    <a class="card" href="./semerj/">
+      <div class="tag">Parceria ativa</div>
+      <h2>COVAC / SEMERJ</h2>
+      <p>Acompanhamento de projetos de lei relacionados à parceria com a SEMERJ.</p>
+      <span class="go">Acessar painel →</span>
+    </a>
+    <a class="card" href="./pareceres/">
+      <div class="tag">Conteúdo</div>
+      <h2>Pareceres e Informativos</h2>
+      <p>Materiais, boletins e comunicados do escritório, à disposição dos clientes para leitura.</p>
+      <span class="go">Acessar conteúdo →</span>
+    </a>
+  </div>
+</main>
+
+<footer>COVAC Advogados — Acompanhamento legislativo estratégico</footer>
+
+</body>
+</html>
