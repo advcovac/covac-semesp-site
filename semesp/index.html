@@ -382,11 +382,31 @@ const DEFAULT_PROJECTS = [
 {numero:"PL 7021/2017",casa:"Senado",apensados:"",conteudo:"Autoriza a extensão do contrato de estágio profissional por até 12 meses após a conclusão do curso superior.",andamento:"Aprovado pela Comissão de Constituição e Justiça e de Cidadania (CCJ) da Câmara dos Deputados. Como a matéria tramitou em caráter conclusivo nas comissões da Câmara, não precisará passar por votação no Plenário, seguindo diretamente para análise do Senado Federal, a menos que haja recurso assinado por deputados pedindo nova avaliação.",providencias:"Acompanhar",parlamentar:"Alex Manente (Cidadania-SP)",status:"Aguardando",data:"Não informado",tema:"Trabalhista",destaque:false,destaqueData:""}
 ];
 
+// Ajustes editoriais solicitados para a publicação de 13/10/2026.
+DEFAULT_PROJECTS.forEach(p => { p.destaque = false; p.destaqueData = ""; });
+const pl2531 = DEFAULT_PROJECTS.find(p => /PL 1540\/2023/.test(p.numero));
+if (pl2531) {
+  pl2531.numero = "PL 2531/2021";
+  pl2531.apensados = "PL 1540/2023";
+  pl2531.conteudo = "Institui a jornada de trabalho de 30 (trinta) horas semanais para profissionais da educação básica que atuam na gestão e na realização de serviços de apoio técnico-administrativo e operacional.";
+  pl2531.andamento = "O PL 1540/2023 foi arquivado. A redação final do PL 2531/2021 foi aprovada na CCJ e enviada ao Senado por meio do Ofício nº 76/2026/PS-GSE. Último andamento na Comissão de Educação e Cultura em 14/09/2026, com voto pela aprovação do projeto proferido pelo Senador Marcelo Castro.";
+  pl2531.data = "14/09/2026";
+  pl2531.destaque = true;
+  pl2531.destaqueData = "13/10/2026";
+}
+const pdl845 = DEFAULT_PROJECTS.find(p => /PDL 845\/2025/.test(p.numero));
+if (pdl845) {
+  pdl845.destaque = true;
+  pdl845.destaqueData = "05/10/2026";
+  pdl845.data = "05/10/2026";
+  pdl845.andamento = "Retirada pelo autor, Senador Flávio Arns. A Presidência determinou a republicação do avulso inicial do Requerimento nº 925/2025, deferiu o requerimento e encaminhou o PDL 845/2025 ao Arquivo.";
+}
+
 /* ====================== ESTADO ====================== */
 let projects = [];
 let adminMode = false;
 let editingId = null;
-const STORAGE_KEY = "covac_semesp_projects_v3";
+const STORAGE_KEY = "covac_semesp_projects_v5";
 
 const STATUS_STYLE = {
   "Aguardando":{bg:"var(--blue-bg)",tx:"var(--blue-tx)"},
