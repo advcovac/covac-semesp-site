@@ -379,7 +379,7 @@ const DEFAULT_PROJECTS = [
 {"numero": "PL 7036/2017", "casa": "Câmara", "apensados": "", "conteudo": "Altera a Lei n° 5.517/1968, que regulamenta a profissão de médico-veterinário, limitando a 10% a carga horária semipresencial do curso de graduação.", "andamento": "Aguardando Designação de Relator na Comissão de Constituição, Justiça e Cidadania (CCJ) da Câmara. Último andamento em 19/03/2024.", "providencias": "Acompanhar de longe e trabalhar para que não ande e não seja aprovado.", "parlamentar": "Onyx Lorenzoni - DEM-RS", "status": "Aguardando", "data": "19/03/2024", "tema": "Educação", "destaque": false, "destaqueData": ""},
 {"numero": "PL 9133/2017(Câmara) e PL 493/2025 (Senado)", "casa": "Câmara e Senado", "apensados": "", "conteudo": "Acrescenta parágrafo único ao art. 7º da Lei nº 9.394/1996, de forma a prever a suspensão de credenciamento para instituições que negarem matrícula de educandos.", "andamento": "O PL 9133/2017 aguarda apreciação. Remetido ao Senado em 14/02/2025. O PL 493/2025 aguarda designação de relator na CCJ do Senado. Último andamento em 11/03/26.", "providencias": "Acompanhar", "parlamentar": "Helder Salomão - PT-ES", "status": "Aguardando", "data": "11/03/26", "tema": "Educação", "destaque": false, "destaqueData": ""},
 {"numero": "PLP 108/2024", "casa": "Senado", "apensados": "", "conteudo": "Institui o Comitê Gestor do Imposto sobre Bens e Serviços (CG-IBS), dispõe sobre o processo administrativo tributário do IBS, sobre a distribuição da arrecadação aos entes federativos, e sobre o ITCMD.", "andamento": "O texto substitutivo aprovado no Plenário do Senado retornou à Câmara. O PLP foi transformado em norma jurídica com veto parcial, sancionado pela Presidência da República, em 13/01/2026. Transformado em Lei Complementar 227/2026, publicada em 14/01/2026.", "providencias": "Transformada em norma jurídica", "parlamentar": "Presidência da República", "status": "Sancionado", "data": "14/01/2026", "tema": "Tributário", "destaque": false, "destaqueData": ""},
-{"numero": "PL 7021/2017", "casa": "Senado", "apensados": "", "conteudo": "Autoriza a extensão do contrato de estágio profissional por até 12 meses após a conclusão do curso superior.", "andamento": "Aprovado pela Comissão de Constituição e Justiça e de Cidadania (CCJ) da Câmara dos Deputados. Como a matéria tramitou em caráter conclusivo nas comissões da Câmara, não precisará passar por votação no Plenário, seguindo diretamente para análise do Senado Federal, a menos que haja recurso assinado por deputados pedindo nova avaliação. Aguardando fluência do prazo para apresentação de recurso.", "providencias": "Acompanhar", "parlamentar": "Alex Manente (Cidadania-SP)", "status": "Aguardando", "data": "Não informado", "tema": "Trabalhista", "destaque": false, "destaqueData": ""}
+{"numero": "PL 7021/2017", "casa": "Senado", "apensados": "", "conteudo": "Autoriza a extensão do contrato de estágio profissional por até 12 meses após a conclusão do curso superior.", "andamento": "Aprovado pela Comissão de Constituição e Justiça e de Cidadania (CCJ) da Câmara dos Deputados, o Projeto de Lei 7021/17 autoriza a extensão do contrato de estágio profissional por até 12 meses após a conclusão do curso superior. Como a matéria tramitou em caráter conclusivo nas comissões da Câmara, não precisará passar por votação no Plenário, seguindo diretamente para análise do Senado Federal, a menos que haja recurso assinado por deputados pedindo nova avaliação. Aguardando fluência do prazo para apresentação de recurso.", "providencias": "Acompanhar", "parlamentar": "Alex Manente (Cidadania-SP)", "status": "Aguardando", "data": "Não informado", "tema": "Trabalhista", "destaque": true, "destaqueData": "03/11/2026", "destaqueOrdem": 1}
 ];
 
 /* ====================== ESTADO ====================== */
@@ -388,7 +388,7 @@ let adminMode = false;
 let editingId = null;
 const STORAGE_KEY = "covac_semesp_projects_v4";
 /* Atualize DATA_VERSION a cada nova versão dos dados: faz o navegador de quem já visitou o site descartar a cópia antiga. */
-const DATA_VERSION = "2026-10-19";
+const DATA_VERSION = "2026-11-03";
 
 const STATUS_STYLE = {
   "Aguardando":{bg:"var(--blue-bg)",tx:"var(--blue-tx)"},
@@ -477,7 +477,7 @@ function renderHighlights(){
     const db = parseDatePt(b.destaqueData) || parseDatePt(b.data) || new Date(0);
     return (db - da) || ((a.destaqueOrdem||99) - (b.destaqueOrdem||99));
   });
-  hl = hl.slice(0,3);
+  hl = hl.slice(0,6);
 
   if(hl.length===0){
     grid.innerHTML = `<div class="hl-empty">Nenhum destaque marcado esta semana. Use a área administrativa para marcar projetos como destaque.</div>`;
